@@ -1,0 +1,89 @@
+CREATE TABLE "tag" (
+"id"  SERIAL ,
+"name" TEXT NOT NULL DEFAULT 'NULL' ,
+PRIMARY KEY ("id")
+);
+
+CREATE TABLE "tag_post" (
+"id"  SERIAL ,
+"id_blogPost" INTEGER ,
+"id_tag" INTEGER ,
+PRIMARY KEY ("id")
+);
+
+CREATE TABLE "blogPost" (
+"id"  SERIAL ,
+"title" TEXT NOT NULL DEFAULT 'NULL' ,
+"post" TEXT NOT NULL DEFAULT 'NULL' ,
+"id_user" INTEGER ,
+"time" TIMESTAMP DEFAULT CURRENT_TIMESTAMP ,
+PRIMARY KEY ("id")
+);
+
+CREATE TABLE "comment" (
+"id"  SERIAL ,
+"id_user" INTEGER ,
+"message" TEXT NOT NULL DEFAULT 'NULL' ,
+"time" TIMESTAMP NOT NULL DEFAULT 'NULL' ,
+"id_blogPost" INTEGER ,
+PRIMARY KEY ("id")
+);
+
+CREATE TABLE "user" (
+"id"  SERIAL ,
+"name" TEXT NOT NULL DEFAULT 'NULL' ,
+"email" TEXT NOT NULL DEFAULT 'NULL' ,
+"password" TEXT NOT NULL DEFAULT 'NULL' ,
+PRIMARY KEY ("id")
+);
+
+CREATE TABLE "dislikes_post" (
+"id"  SERIAL ,
+"id_blogPost" INTEGER ,
+"id_user" INTEGER ,
+PRIMARY KEY ("id")
+);
+
+CREATE TABLE "likes_post" (
+"id"  SERIAL ,
+"id_blogPost" INTEGER ,
+"id_user" INTEGER ,
+PRIMARY KEY ("id")
+);
+
+CREATE TABLE "subscriptions_followers" (
+"id"  SERIAL ,
+"id_user" INTEGER ,
+"id_user" INTEGER ,
+PRIMARY KEY ("id")
+);
+
+CREATE TABLE "likes_comment" (
+"id"  SERIAL ,
+"id_user" INTEGER ,
+"id_comment" INTEGER ,
+PRIMARY KEY ("id")
+);
+
+CREATE TABLE "dislikes_comment" (
+"id"  SERIAL ,
+"id_user" INTEGER ,
+"id_comment" INTEGER ,
+PRIMARY KEY ("id")
+);
+
+ALTER TABLE "tag_post" ADD FOREIGN KEY ("id_blogPost") REFERENCES "blogPost" ("id");
+ALTER TABLE "tag_post" ADD FOREIGN KEY ("id_tag") REFERENCES "tag" ("id");
+ALTER TABLE "blogPost" ADD FOREIGN KEY ("id_user") REFERENCES "user" ("id");
+ALTER TABLE "comment" ADD FOREIGN KEY ("id_user") REFERENCES "user" ("id");
+ALTER TABLE "comment" ADD FOREIGN KEY ("id_blogPost") REFERENCES "blogPost" ("id");
+ALTER TABLE "dislikes_post" ADD FOREIGN KEY ("id_blogPost") REFERENCES "blogPost" ("id");
+ALTER TABLE "dislikes_post" ADD FOREIGN KEY ("id_user") REFERENCES "user" ("id");
+ALTER TABLE "likes_post" ADD FOREIGN KEY ("id_blogPost") REFERENCES "blogPost" ("id");
+ALTER TABLE "likes_post" ADD FOREIGN KEY ("id_user") REFERENCES "user" ("id");
+ALTER TABLE "subscriptions_followers" ADD FOREIGN KEY ("id_user") REFERENCES "user" ("id");
+ALTER TABLE "subscriptions_followers" ADD FOREIGN KEY ("id_user") REFERENCES "user" ("id");
+ALTER TABLE "likes_comment" ADD FOREIGN KEY ("id_user") REFERENCES "user" ("id");
+ALTER TABLE "likes_comment" ADD FOREIGN KEY ("id_comment") REFERENCES "comment" ("id");
+ALTER TABLE "dislikes_comment" ADD FOREIGN KEY ("id_user") REFERENCES "user" ("id");
+ALTER TABLE "dislikes_comment" ADD FOREIGN KEY ("id_comment") REFERENCES "comment" ("id");
