@@ -1,23 +1,28 @@
 package model;
 
+import java.io.Serializable;
 import java.util.Set;
 
-public class User {
+public class User implements Serializable {
     private Long id;
     private String name;
     private String email;
     private String password;
+    private Set<User> subscriptions;
+    private Set<User> followers;
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", subscriptions=" + subscriptions +
-                ", followers=" + followers +
-                '}';
+    public User() {
+
+    }
+
+    public User(Long id, String name, String email, String password, Set<User> subscriptions, Set<User> followers) {
+
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.subscriptions = subscriptions;
+        this.followers = followers;
     }
 
     public Long getId() {
@@ -68,21 +73,15 @@ public class User {
         this.followers = followers;
     }
 
-    public User() {
-
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", subscriptions=" + subscriptions +
+                ", followers=" + followers +
+                '}';
     }
-
-    public User(Long id, String name, String email, String password, Set<User> subscriptions, Set<User> followers) {
-
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.password = password;
-        this.subscriptions = subscriptions;
-        this.followers = followers;
-    }
-
-    private Set<User> subscriptions;
-    private Set<User> followers;
-
 }

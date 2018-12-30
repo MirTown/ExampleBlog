@@ -1,14 +1,19 @@
 package model;
 
-public class Tag {
-    Long id;
+import java.io.Serializable;
 
-    @Override
-    public String toString() {
-        return "Tag{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
+public class Tag implements Serializable {
+    Long id;
+    String name;
+
+    public Tag() {
+
+    }
+
+    public Tag(Long id, String name) {
+
+        this.id = id;
+        this.name = name;
     }
 
     public Long getId() {
@@ -27,15 +32,11 @@ public class Tag {
         this.name = name;
     }
 
-    public Tag() {
-
+    @Override
+    public String toString() {
+        return "Tag{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
-
-    public Tag(Long id, String name) {
-
-        this.id = id;
-        this.name = name;
-    }
-
-    String name;
 }

@@ -1,10 +1,11 @@
 package model;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
 
-public class BlogPost {
+public class BlogPost implements Serializable {
     private Long id;
     private String title;
     private String post;
@@ -15,19 +16,21 @@ public class BlogPost {
     private Set<User> likes;
     private Set<User> dislikes;
 
-    @Override
-    public String toString() {
-        return "BlogPost{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", post='" + post + '\'' +
-                ", author=" + author +
-                ", date=" + date +
-                ", tags=" + tags +
-                ", comments=" + comments +
-                ", likes=" + likes +
-                ", dislikes=" + dislikes +
-                '}';
+    public BlogPost() {
+
+    }
+
+    public BlogPost(Long id, String title, String post, User author, LocalDateTime date, Set<Tag> tags, Set<Comment> comments, Set<User> likes, Set<User> dislikes) {
+
+        this.id = id;
+        this.title = title;
+        this.post = post;
+        this.author = author;
+        this.date = date;
+        this.tags = tags;
+        this.comments = comments;
+        this.likes = likes;
+        this.dislikes = dislikes;
     }
 
     public Long getId() {
@@ -102,22 +105,21 @@ public class BlogPost {
         this.dislikes = dislikes;
     }
 
-    public BlogPost() {
-
+    @Override
+    public String toString() {
+        return "BlogPost{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", post='" + post + '\'' +
+                ", author=" + author +
+                ", date=" + date +
+                ", tags=" + tags +
+                ", comments=" + comments +
+                ", likes=" + likes +
+                ", dislikes=" + dislikes +
+                '}';
     }
 
-    public BlogPost(Long id, String title, String post, User author, LocalDateTime date, Set<Tag> tags, Set<Comment> comments, Set<User> likes, Set<User> dislikes) {
-
-        this.id = id;
-        this.title = title;
-        this.post = post;
-        this.author = author;
-        this.date = date;
-        this.tags = tags;
-        this.comments = comments;
-        this.likes = likes;
-        this.dislikes = dislikes;
-    }
 }
 
 
